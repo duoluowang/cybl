@@ -12,8 +12,8 @@ const EnvConfig = {
         mockApi:''
     },
     prod:{
-        baseApi:'/',
-        mockApi:''
+        baseApi:'https://www.fastmock.site/mock/8c36cab310a62d8095ce9a3a904ebb57/api',
+        mockApi:'https://www.fastmock.site/mock/8c36cab310a62d8095ce9a3a904ebb57/api'
     }
 }
 export default{
