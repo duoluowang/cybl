@@ -3,18 +3,18 @@
     <div class="modal">
       <el-form ref="userForm" :model="user" status-icon :rules="rules">
         <div class="title">餐饮部落</div>
-        <el-form-item prop="userName">
+        <el-form-item prop="phone">
           <el-input
             type="text"
             prefix-icon="User"
-            v-model="user.userName"
+            v-model="user.phone"
           />
         </el-form-item>
-        <el-form-item prop="userPwd">
+        <el-form-item prop="password">
           <el-input
             type="password"
             prefix-icon="Lock"
-            v-model="user.userPwd"
+            v-model="user.password"
           />
         </el-form-item>
         
@@ -36,18 +36,20 @@ export default {
   data() {
     return {
       user: {
-        userName: "admin",
-        userPwd: "123456",
+        phone: "",
+        password: "",
+        loginType:1,
+        platfrom:"web"
       },
       rules: {
-        userName: [
+        phone: [
           {
             required: true,
             message: "请输入用户名",
             trigger: "blur",
           },
         ],
-        userPwd: [
+        password: [
           {
             required: true,
             message: "请输入密码",
@@ -61,6 +63,7 @@ export default {
     login() {
       this.$refs.userForm.validate((valid) => {
         if (valid) {
+          console.log("user:"+JSON.stringify(this.user))
           this.$api.login(this.user).then(async (res) => {
             this.$store.commit("saveUserInfo", res);
             await this.loadAsyncRoutes();

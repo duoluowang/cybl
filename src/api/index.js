@@ -5,9 +5,14 @@ import request from './../utils/request'
 export default {
     login(params) {
         return request({
-            url: '/users/login',
+            url: '/login',
             method: 'post',
+            headers:{
+                "x-cybl":"cybl_1107",
+                "Content-Type":"application/json"
+            },
             data: params,
+            mock:false
         })
     },
     noticeCount(params) {

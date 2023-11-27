@@ -4,7 +4,7 @@
 const env = import.meta.env.MODE||'prod';
 const EnvConfig = {
     dev:{
-        baseApi:'/',
+        baseApi:'http://47.98.62.192:8076/cybl/api',
         mockApi:'https://www.fastmock.site/mock/8c36cab310a62d8095ce9a3a904ebb57/api'
     },
     test:{

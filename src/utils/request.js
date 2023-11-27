@@ -13,19 +13,23 @@ const NETWORK_ERROR = '网络请求异常，请稍后重试'
 // 创建axios实例对象，添加全局配置
 const service = axios.create({
     baseURL: config.baseApi,
-    timeout: 8000
+    // baseURL: '/api',
+    timeout: 80000
 })
 
 // 请求拦截
 service.interceptors.request.use((req) => {
     const headers = req.headers;
+    console.log(req.headers)
     const { token = "" } = storage.getItem('userInfo') || {};
     if (!headers.Authorization) headers.Authorization = 'Bearer ' + token;
+    console.log(req)
     return req;
 })
 
 // 响应拦截
 service.interceptors.response.use((res) => {
+    console.log("服务器返回数据："+res)
     const { code, data, msg } = res.data;
     if (code === 200) {
         return data;
