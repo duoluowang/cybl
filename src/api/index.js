@@ -7,11 +7,14 @@ export default {
         return request({
             url: '/login',
             method: 'post',
-            headers:{
-                "x-cybl":"cybl_1107",
-                "Content-Type":"application/json"
-            },
             data: params,
+            mock:false
+        })
+    },
+    test(){
+        return request({
+            url: '/dict/job_status',
+            method: 'get',
             mock:false
         })
     },
@@ -37,13 +40,6 @@ export default {
             method: 'get',
             data: {},
             mock: true
-        })
-    },
-    getUserList(params) {
-        return request({
-            url: '/users/list',
-            method: 'get',
-            data: params
         })
     },
     getAllUserList() {
@@ -148,5 +144,32 @@ export default {
             data: params,
             mock: false
         })
-    }
+    },
+    //获取课程列表
+    getCourseList(params) {
+        return request({
+            url: '/course/list',
+            method: 'post',
+            data: params,
+            mock: false
+        })
+    },
+     //获取新闻列表
+     getNewsList(params) {
+        return request({
+            url: '/news/list',
+            method: 'post',
+            data: params,
+            mock: false
+        })
+    },
+    //获取用户列表
+    getUserList(params) {
+        return request({
+            url: '/user/list',
+            method: 'post',
+            data: params,
+            mock:false
+        })
+    },
 }

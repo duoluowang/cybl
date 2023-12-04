@@ -63,8 +63,11 @@ export default {
     login() {
       this.$refs.userForm.validate((valid) => {
         if (valid) {
-          console.log("user:"+JSON.stringify(this.user))
-          this.$api.login(this.user).then(async (res) => {
+          //md5加密
+          const data = this.user
+          data.password=this.$md5(data.password)
+          // console.log("user:"+JSON.stringify(this.user))
+          this.$api.login(data).then(async (res) => {
             this.$store.commit("saveUserInfo", res);
             await this.loadAsyncRoutes();
             this.$router.push("/welcome");

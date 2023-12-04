@@ -20,16 +20,18 @@ const service = axios.create({
 // 请求拦截
 service.interceptors.request.use((req) => {
     const headers = req.headers;
-    console.log(req.headers)
+    headers.set({"x-cybl":"cybl_1107"})
+    headers.set({"platform":"web"})
     const { token = "" } = storage.getItem('userInfo') || {};
-    if (!headers.Authorization) headers.Authorization = 'Bearer ' + token;
-    console.log(req)
+    // if (!headers.Authorization) headers.Authorization = 'Bearer ' + token;
+    headers.set({"token":token})
     return req;
 })
 
 // 响应拦截
 service.interceptors.response.use((res) => {
-    console.log("服务器返回数据："+res)
+    console.log("服务器返回数据："+JSON.stringify(res))
+    // console.log(res.data)
     const { code, data, msg } = res.data;
     if (code === 200) {
         return data;

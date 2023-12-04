@@ -42,14 +42,14 @@
           </el-badge>
           <el-dropdown @command="handleLogout">
             <span class="user-link">
-              {{ userInfo.userName }}
+              {{ userInfo.name }}
               <i class="el-icon--right"></i>
             </span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item command="email"
+                <!-- <el-dropdown-item command="email"
                   >邮箱：{{ userInfo.userEmail }}</el-dropdown-item
-                >
+                > -->
                 <el-dropdown-item command="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       isCollapse: false,
-      userInfo: this.$store.state.userInfo,
+      userInfo: this.$store.state.userInfo.user,
       // noticeCount: 0,
       userMenu: [],
       activeMenu: location.hash.slice(1),
@@ -101,7 +101,7 @@ export default {
       try {
         const count = await this.$api.noticeCount();
         this.$store.commit("saveNoticeCount", count);
-        console.log('count:'+count)
+        // console.log('count:'+count)
       } catch (error) {
         console.error(error);
       }
@@ -112,7 +112,7 @@ export default {
         this.$store.commit("saveMenuList", menuList);
         this.$store.commit("saveActionList", actionList);
         this.userMenu = menuList;
-        console.log("menuList:"+menuList)
+        // console.log("menuList:"+menuList)
       } catch (error) {
         console.error(error);
       }
@@ -200,6 +200,9 @@ export default {
         .user-link {
           cursor: pointer;
           color: #409eff;
+        }
+        .el-dropdown{
+          vertical-align: baseline;
         }
       }
     }
